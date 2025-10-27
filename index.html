@@ -74,12 +74,28 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
             weight: 1.0,
             opacity: 0.7
           };
+        },
+        onEachFeature: function(feature, layer) {
+          layer.on('click', function(e) {
+            alert("Zone Name: " + feature.properties.NAME);
+          });
         }
       }).addTo(map);
     });
 
     $.getJSON("wasteContainer.json", function(WC) {
-      L.geoJson(WC).addTo(map);
+      L.geoJson(WC, {
+        pointToLayer: function(feature, latlng) {
+          return L.circleMarker(latlng, {
+            radius: 5,
+            fillColor: "orange",
+            color: "orange",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+          });
+        }
+      }).addTo(map);
     });
 
   </script>
