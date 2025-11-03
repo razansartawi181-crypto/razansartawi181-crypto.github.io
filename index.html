@@ -24,25 +24,17 @@
 
     const map = L.map("map", mapOptions);
 
-    // === تعريف الطبقتين الأساسيتين (فاتحة وداكنة) ===
-    const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
-    });
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+      subdomains: 'abcd',
+      maxZoom: 20
+    }).addTo(map);
 
-    const light = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    });
-
-    // نبدأ بالطبقة الداكنة
-    dark.addTo(map);
-
-    // === شريط القياس ===
+    // >>> شريط القياس <<<
     L.control.scale({ position: 'bottomleft', imperial: false, maxWidth: 150 }).addTo(map);
 
-    // === تحميل مناطق رام الله ===
-    let RZLayer;
     $.getJSON("RamallahZones.json", function(RZ) {
-      RZLayer = L.geoJson(RZ, {
+      L.geoJson(RZ, {
         style: function(feature) {
           return {
             fillColor: "yellow",
@@ -60,10 +52,8 @@
       }).addTo(map);
     });
 
-    // === تحميل نقاط الحاويات ===
-    let WCLayer;
     $.getJSON("wasteContainer.json", function(WC) {
-      WCLayer = L.geoJson(WC, {
+      L.geoJson(WC, {
         pointToLayer: function(feature, latlng) {
           return L.circleMarker(latlng, {
             radius: 5,
@@ -77,21 +67,11 @@
       }).addTo(map);
     });
 
-    // === التحكم في الطبقات ===
-    const baseMaps = {
-      "خريطة داكنة": dark,
-      "خريطة فاتحة": light
-    };
-
-    const overlayMaps = {
-      "مناطق رام الله": RZLayer,
-      "حاويات النفايات": WCLayer
-    };
-
-    L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
   </script>
 </body>
 </html>
+
+
 
 
 
