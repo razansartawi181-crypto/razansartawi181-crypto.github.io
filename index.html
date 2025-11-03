@@ -13,6 +13,7 @@
   <div id="map"></div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <script>
     const map = L.map("map", {
@@ -21,7 +22,7 @@
       zoomSnap: 0.5
     });
 
-    // Base layers
+    // Base maps
     const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; OpenStreetMap &copy; CARTO',
       subdomains: 'abcd',
@@ -32,70 +33,48 @@
       attribution: '&copy; OpenStreetMap contributors'
     });
 
-    // Sample GeoJSON for zones (replace with your RamallahZones.json)
-    const RZGeoJSON = {
-      "type": "FeatureCollection",
-      "features": [
-        {
-          "type": "Feature",
-          "properties": { "NAME": "Zone 1" },
-          "geometry": {
-            "type": "Polygon",
-            "coordinates": [[[35.2035,31.9040],[35.2050,31.9040],[35.2050,31.9050],[35.2035,31.9050],[35.2035,31.9040]]]
-          }
+    // Load Ramallah Zones JSON
+    $.getJSON("RamallahZones.json", function(RZ) {
+      const RZLayer = L.geoJson(RZ, {
+        style: function(feature) {
+          return { fillColor: "yellow", fillOpacity: 0.3, color: "yellow", weight: 1, opacity: 0.7 };
+        },
+        onEachFeature: function(feature, layer) {
+          layer.on('click', function() {
+            alert("Zone Name: " + feature.properties.NAME);
+          });
         }
-      ]
-    };
+      }).addTo(map);
 
-    const RZLayer = L.geoJson(RZGeoJSON, {
-      style: { fillColor: "yellow", fillOpacity: 0.3, color: "yellow", weight: 1, opacity: 0.7 },
-      onEachFeature: function(feature, layer) {
-        layer.on('click', function() {
-          alert("Zone Name: " + feature.properties.NAME);
-        });
-      }
-    }).addTo(map);
+      // Load Waste Containers JSON
+      $.getJSON("wasteContainer.json", function(WC) {
+        const WCLayer = L.geoJson(WC, {
+          pointToLayer: function(feature, latlng) {
+            return L.circleMarker(latlng, {
+              radius: 5,
+              fillColor: "orange",
+              color: "orange",
+              weight: 1,
+              opacity: 1,
+              fillOpacity: 0.8
+            });
+          }
+        }).addTo(map);
 
-    // Sample GeoJSON for waste containers (replace with your wasteContainer.json)
-    const WCGeoJSON = {
-      "type": "FeatureCollection",
-      "features": [
-        { "type": "Feature", "geometry": { "type": "Point", "coordinates": [35.2040,31.9045] } },
-        { "type": "Feature", "geometry": { "type": "Point", "coordinates": [35.2045,31.9048] } }
-      ]
-    };
+        // Add Layer Control after all layers are loaded
+        const baseMaps = { "Dark Map": dark, "Light Map": light };
+        const overlayMaps = { "Ramallah Zones": RZLayer, "Waste Containers": WCLayer };
+        L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
+      });
+    });
 
-    const WCLayer = L.geoJson(WCGeoJSON, {
-      pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, {
-          radius: 5,
-          fillColor: "orange",
-          color: "orange",
-          weight: 1,
-          opacity: 1,
-          fillOpacity: 0.8
-        });
-      }
-    }).addTo(map);
-
-    // Layer control
-    const baseMaps = {
-      "Dark Map": dark,
-      "Light Map": light
-    };
-
-    const overlayMaps = {
-      "Ramallah Zones": RZLayer,
-      "Waste Containers": WCLayer
-    };
-
-    L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
-
-    // Add scale
+    // Add scale control
     L.control.scale({ position: 'bottomleft', imperial: false, maxWidth: 150 }).addTo(map);
   </script>
 </body>
 </html>
+
+
 
 
 
