@@ -1,44 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Leaflet Map with North Arrow</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-  <style>
-    html, body { height: 100%; margin: 0; }
-    #map { width: 100%; height: 100%; position: relative; }
+map.locate({ setView: true, maxZoom: 18 });
 
-    /* North arrow */
-    #north-arrow {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 50px;
-      height: 50px;
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHBvbHlnb24gcG9pbnRzPSIzMCAwIDQ1IDUwIDMwIDM4IDE1IDUwIiBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTpjYmxhY2s7c3Ryb2tlLXdpZHRoOjI7Ii8+PC9zdmc+');
-      background-size: contain;
-      background-repeat: no-repeat;
-      z-index: 10000;
-      pointer-events: none;
-    }
-  </style>
-</head>
-<body>
-  <div id="map"></div>
-  <div id="north-arrow"></div>
+map.on('locationfound', function(e) {
+  L.circleMarker(e.latlng, {
+    radius: 7,
+    fillColor: "blue",
+    color: "white",
+    weight: 2,
+    opacity: 1,
+    fillOpacity: 0.9
+  }).addTo(map).bindPopup("موقعك الحالي").openPopup();
+});
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script>
-    const map = L.map('map').setView([31.9045, 35.2045], 17);
+map.on('locationerror', function() {
+  alert("تعذر تحديد موقعك.");
+});
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
 
-    L.control.scale({ position: 'bottomleft', imperial: false }).addTo(map);
-  </script>
-</body>
-</html>
 
 
 
