@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Ramallah Waste Containers</title>
+  <title>Simple Leaflet Map with North Arrow</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
   <style>
     body { margin: 0; height: 100%; width: 100%; }
     #map { position: absolute; width: 100%; top: 0; bottom: 0; }
 
-    /* North arrow using Base64 image */
+    /* North arrow */
     #north-arrow {
       position: absolute;
       top: 10px;
@@ -28,55 +28,25 @@
   <div id="north-arrow"></div>
 
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
   <script>
-    const mapOptions = {
-      zoomSnap: 0.5,
+    // Initialize map
+    const map = L.map('map', {
       center: [31.9045, 35.2045],
-      zoom: 17.5,
-    };
+      zoom: 17.5
+    });
 
-    const map = L.map("map", mapOptions);
-
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-      subdomains: 'abcd',
-      maxZoom: 20
+    // Add base tile
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
+    // Add scale control
     L.control.scale({ position: 'bottomleft', imperial: false, maxWidth: 150 }).addTo(map);
-
-    $.getJSON("RamallahZones.json", function(RZ) {
-      L.geoJson(RZ, {
-        style: function(feature) {
-          return { fillColor: "yellow", fillOpacity: 0.3, color: "yellow", weight: 1, opacity: 0.7 };
-        },
-        onEachFeature: function(feature, layer) {
-          layer.on('click', function(e) {
-            alert("Zone Name: " + feature.properties.NAME);
-          });
-        }
-      }).addTo(map);
-    });
-
-    $.getJSON("wasteContainer.json", function(WC) {
-      L.geoJson(WC, {
-        pointToLayer: function(feature, latlng) {
-          return L.circleMarker(latlng, {
-            radius: 5,
-            fillColor: "orange",
-            color: "orange",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 0.8
-          });
-        }
-      }).addTo(map);
-    });
   </script>
 </body>
 </html>
+
+
 
 
 
