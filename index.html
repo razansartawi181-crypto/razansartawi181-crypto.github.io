@@ -5,23 +5,28 @@
   <title>Ramallah Waste Containers</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
   <style>
-    body { margin: 0px; height: 100%; width: 100%; }
-    #map { position: absolute; width: 100%; top: 0px; bottom: 0; }
+    body { margin: 0; height: 100%; width: 100%; }
+    #map { position: absolute; width: 100%; top: 0; bottom: 0; }
 
     /* North arrow style */
-    .north-arrow {
+    #north-arrow {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 50px;
+      height: 50px;
       background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/8c/North_arrow.svg');
       background-size: contain;
       background-repeat: no-repeat;
-      width: 50px;
-      height: 50px;
-      pointer-events: none; /* important to let map interactions pass through */
       z-index: 1000;
+      pointer-events: none; /* allows clicking map underneath */
     }
   </style>
 </head>
 <body>
   <div id="map"></div>
+  <!-- North arrow div -->
+  <div id="north-arrow"></div>
 
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -46,13 +51,7 @@
     $.getJSON("RamallahZones.json", function(RZ) {
       L.geoJson(RZ, {
         style: function(feature) {
-          return {
-            fillColor: "yellow",
-            fillOpacity: 0.3,
-            color: "yellow",
-            weight: 1.0,
-            opacity: 0.7
-          };
+          return { fillColor: "yellow", fillOpacity: 0.3, color: "yellow", weight: 1, opacity: 0.7 };
         },
         onEachFeature: function(feature, layer) {
           layer.on('click', function(e) {
@@ -76,19 +75,11 @@
         }
       }).addTo(map);
     });
-
-    // ===== Add North Arrow =====
-    const NorthArrow = L.Control.extend({
-      onAdd: function(map) {
-        const div = L.DomUtil.create('div', 'north-arrow');
-        return div;
-      }
-    });
-
-    map.addControl(new NorthArrow({ position: 'topright' }));
   </script>
 </body>
 </html>
+
+
 
 
 
