@@ -3,97 +3,101 @@
 <head>
   <meta charset="utf-8" />
   <title>Ramallah Waste Containers</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
-    body { margin: 0px; height: 100%; width: 100%; }
-    #map { position: absolute; width: 100%; top: 0px; bottom: 0; }
+    body { margin: 0; height: 100%; width: 100%; }
+    #map { position: absolute; width: 100%; top: 0; bottom: 0; }
   </style>
 </head>
 <body>
   <div id="map"></div>
 
-  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <script>
-    // original map options
-    const mapOptions = {
-      zoomSnap: 0.5,
+    const map = L.map("map", {
       center: [31.9045, 35.2045],
-      zoom: 17.5
-    };
+      zoom: 17.5,
+      zoomSnap: 0.5
+    });
 
-    const map = L.map("map", mapOptions);
-
-    // original dark base map
+    // Base layers
     const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
       subdomains: 'abcd',
       maxZoom: 20
     }).addTo(map);
 
-    // new light base map
     const light = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     });
 
-    // load Ramallah zones (original code)
-    let RZLayer;
-    $.getJSON("RamallahZones.json", function(RZ) {
-      RZLayer = L.geoJson(RZ, {
-        style: function(feature) {
-          return {
-            fillColor: "yellow",
-            fillOpacity: 0.3,
-            color: "yellow",
-            weight: 1.0,
-            opacity: 0.7
-          };
-        },
-        onEachFeature: function(feature, layer) {
-          layer.on('click', function(e) {
-            alert("Zone Name: " + feature.properties.NAME);
-          });
+    // Sample GeoJSON for zones (replace with your RamallahZones.json)
+    const RZGeoJSON = {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "properties": { "NAME": "Zone 1" },
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[[35.2035,31.9040],[35.2050,31.9040],[35.2050,31.9050],[35.2035,31.9050],[35.2035,31.9040]]]
+          }
         }
-      }).addTo(map);
-    });
+      ]
+    };
 
-    // load waste containers (original code)
-    let WCLayer;
-    $.getJSON("wasteContainer.json", function(WC) {
-      WCLayer = L.geoJson(WC, {
-        pointToLayer: function(feature, latlng) {
-          return L.circleMarker(latlng, {
-            radius: 5,
-            fillColor: "orange",
-            color: "orange",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 0.8
-          });
-        }
-      }).addTo(map);
-    });
+    const RZLayer = L.geoJson(RZGeoJSON, {
+      style: { fillColor: "yellow", fillOpacity: 0.3, color: "yellow", weight: 1, opacity: 0.7 },
+      onEachFeature: function(feature, layer) {
+        layer.on('click', function() {
+          alert("Zone Name: " + feature.properties.NAME);
+        });
+      }
+    }).addTo(map);
 
-    // === NEW ADDITION: Light/Dark toggle ===
-    // wait a short delay to ensure layers are loaded
-    setTimeout(function() {
-      const baseMaps = {
-        "Dark Map": dark,
-        "Light Map": light
-      };
+    // Sample GeoJSON for waste containers (replace with your wasteContainer.json)
+    const WCGeoJSON = {
+      "type": "FeatureCollection",
+      "features": [
+        { "type": "Feature", "geometry": { "type": "Point", "coordinates": [35.2040,31.9045] } },
+        { "type": "Feature", "geometry": { "type": "Point", "coordinates": [35.2045,31.9048] } }
+      ]
+    };
 
-      const overlayMaps = {
-        "Ramallah Zones": RZLayer,
-        "Waste Containers": WCLayer
-      };
+    const WCLayer = L.geoJson(WCGeoJSON, {
+      pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, {
+          radius: 5,
+          fillColor: "orange",
+          color: "orange",
+          weight: 1,
+          opacity: 1,
+          fillOpacity: 0.8
+        });
+      }
+    }).addTo(map);
 
-      L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
-    }, 1000); // 1 second delay to allow GeoJSON layers to load
+    // Layer control
+    const baseMaps = {
+      "Dark Map": dark,
+      "Light Map": light
+    };
 
+    const overlayMaps = {
+      "Ramallah Zones": RZLayer,
+      "Waste Containers": WCLayer
+    };
+
+    L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
+
+    // Add scale
+    L.control.scale({ position: 'bottomleft', imperial: false, maxWidth: 150 }).addTo(map);
   </script>
 </body>
 </html>
+
+
 
 
 
