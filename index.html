@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Simple Leaflet Map with North Arrow</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <meta charset="UTF-8">
+  <title>Leaflet Map with North Arrow</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <style>
-    body { margin: 0; height: 100%; width: 100%; }
-    #map { position: absolute; width: 100%; top: 0; bottom: 0; }
+    html, body { height: 100%; margin: 0; }
+    #map { width: 100%; height: 100%; position: relative; }
 
     /* North arrow */
     #north-arrow {
@@ -18,7 +18,7 @@
       background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHBvbHlnb24gcG9pbnRzPSIzMCAwIDQ1IDUwIDMwIDM4IDE1IDUwIiBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTpjYmxhY2s7c3Ryb2tlLXdpZHRoOjI7Ii8+PC9zdmc+');
       background-size: contain;
       background-repeat: no-repeat;
-      z-index: 1000;
+      z-index: 10000;
       pointer-events: none;
     }
   </style>
@@ -27,24 +27,20 @@
   <div id="map"></div>
   <div id="north-arrow"></div>
 
-  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // Initialize map
-    const map = L.map('map', {
-      center: [31.9045, 35.2045],
-      zoom: 17.5
-    });
+    const map = L.map('map').setView([31.9045, 35.2045], 17);
 
-    // Add base tile
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // Add scale control
-    L.control.scale({ position: 'bottomleft', imperial: false, maxWidth: 150 }).addTo(map);
+    L.control.scale({ position: 'bottomleft', imperial: false }).addTo(map);
   </script>
 </body>
 </html>
+
+
 
 
 
