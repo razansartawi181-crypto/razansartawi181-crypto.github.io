@@ -8,24 +8,23 @@
     body { margin: 0; height: 100%; width: 100%; }
     #map { position: absolute; width: 100%; top: 0; bottom: 0; }
 
-    /* North arrow style */
+    /* North arrow using Base64 image */
     #north-arrow {
       position: absolute;
       top: 10px;
       right: 10px;
       width: 50px;
       height: 50px;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/8c/North_arrow.svg');
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHBvbHlnb24gcG9pbnRzPSIzMCAwIDQ1IDUwIDMwIDM4IDE1IDUwIiBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTpjYmxhY2s7c3Ryb2tlLXdpZHRoOjI7Ii8+PC9zdmc+');
       background-size: contain;
       background-repeat: no-repeat;
       z-index: 1000;
-      pointer-events: none; /* allows clicking map underneath */
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
   <div id="map"></div>
-  <!-- North arrow div -->
   <div id="north-arrow"></div>
 
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
@@ -78,6 +77,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
