@@ -16,36 +16,39 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <script>
-    // define map options
+    // original map options
     const mapOptions = {
       zoomSnap: 0.5,
       center: [31.9045, 35.2045],
       zoom: 17.5
     };
 
-    // define the map
     const map = L.map("map", mapOptions);
 
-    // define base layers
+    // original dark base map
     const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
       subdomains: 'abcd',
       maxZoom: 20
-    });
+    }).addTo(map);
 
+    // new light base map
     const light = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     });
 
-    // add default layer (dark)
-    dark.addTo(map);
-
-    // === load GeoJSON zones ===
+    // load Ramallah zones (original code)
     let RZLayer;
     $.getJSON("RamallahZones.json", function(RZ) {
       RZLayer = L.geoJson(RZ, {
         style: function(feature) {
-          return { fillColor: "yellow", fillOpacity: 0.3, color: "yellow", weight: 1.0, opacity: 0.7 };
+          return {
+            fillColor: "yellow",
+            fillOpacity: 0.3,
+            color: "yellow",
+            weight: 1.0,
+            opacity: 0.7
+          };
         },
         onEachFeature: function(feature, layer) {
           layer.on('click', function(e) {
@@ -55,7 +58,7 @@
       }).addTo(map);
     });
 
-    // === load waste containers ===
+    // load waste containers (original code)
     let WCLayer;
     $.getJSON("wasteContainer.json", function(WC) {
       WCLayer = L.geoJson(WC, {
@@ -72,22 +75,13 @@
       }).addTo(map);
     });
 
-    // === add layer control for Light/Dark toggle ===
-    const baseMaps = {
-      "Dark Map": dark,
-      "Light Map": light
-    };
+    // === NEW ADDITION: Light/Dark toggle ===
+    // wait a short delay to ensure layers are loaded
+    setTimeout(function() {
+      const baseMaps = {
+        "Dark Map":
 
-    const overlayMaps = {
-      "Ramallah Zones": RZLayer,
-      "Waste Containers": WCLayer
-    };
 
-    L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
-
-  </script>
-</body>
-</html>
 
 
 
