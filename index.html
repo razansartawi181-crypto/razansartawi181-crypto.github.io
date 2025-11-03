@@ -15,6 +15,8 @@
       background-repeat: no-repeat;
       width: 50px;
       height: 50px;
+      pointer-events: none; /* important to let map interactions pass through */
+      z-index: 1000;
     }
   </style>
 </head>
@@ -39,7 +41,6 @@
       maxZoom: 20
     }).addTo(map);
 
-    // Scale control
     L.control.scale({ position: 'bottomleft', imperial: false, maxWidth: 150 }).addTo(map);
 
     $.getJSON("RamallahZones.json", function(RZ) {
@@ -81,9 +82,6 @@
       onAdd: function(map) {
         const div = L.DomUtil.create('div', 'north-arrow');
         return div;
-      },
-      onRemove: function(map) {
-        // Nothing to do here
       }
     });
 
@@ -91,6 +89,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
