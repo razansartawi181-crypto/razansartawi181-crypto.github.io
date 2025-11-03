@@ -79,7 +79,23 @@
     // wait a short delay to ensure layers are loaded
     setTimeout(function() {
       const baseMaps = {
-        "Dark Map":
+        "Dark Map": dark,
+        "Light Map": light
+      };
+
+      const overlayMaps = {
+        "Ramallah Zones": RZLayer,
+        "Waste Containers": WCLayer
+      };
+
+      L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
+    }, 1000); // 1 second delay to allow GeoJSON layers to load
+
+  </script>
+</body>
+</html>
+
+
 
 
 
