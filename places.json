@@ -1,0 +1,251 @@
+[
+  {
+    "id": 1,
+    "name": "Birzeit University",
+    "type": "University",
+    "description": "جامعة بيرزيت، من أعرق الجامعات الفلسطينية",
+    "lat": 31.9697,
+    "lng": 35.2044
+  },
+  {
+    "id": 2,
+    "name": "Old City of Birzeit",
+    "type": "Historic Area",
+    "description": "البلدة القديمة في بيرزيت بطابعها التراثي",
+    "lat": 31.9689,
+    "lng": 35.2019
+  },
+  {
+    
+    "id": 3,
+    "name": "Birzeit Park",
+    "type": "Park",
+    "description": "حديقة عامة للتنزه والراحة",
+    "lat": 31.9712,
+    "lng": 35.2063
+  },
+  {
+    "id": 4,
+    "name": "Heritage Museum – Birzeit",
+    "type": "Museum",
+    "description": "متحف يعرض التراث والثقافة الفلسطينية",
+    "lat": 31.9684,
+    "lng": 35.2028
+  },
+  {
+    "id": 5,
+    "name": "Local Cafe – Birzeit",
+    "type": "Cafe",
+    "description": "كافيه محلي قريب من جامعة بيرزيت",
+    "lat": 31.9701,
+    "lng": 35.2051
+  },
+  {
+    "id": 6,
+    "name": "Save Mart Super Market",
+    "type": "Supermarket",
+    "description": "سوبرماركت في بيرزيت",
+    "lat": 31.96163590675423,
+    "lng": 35.190897262111015
+  },{
+  "id": 7,
+  "name": "Salon Jourey",
+  "type": "Salon",
+  "description": "صالون تجميل في بيرزيت",
+  "lat": 31.961563339670946,
+  "lng": 35.19070748414485
+}
+,
+
+{
+  "id": 8,
+  "name": "Bayt Jabra Study House",
+  "type": "Study House",
+  "description": "بيت للدراسة في بيرزيت",
+  "lat": 31.96183288489315,
+  "lng": 35.19000416985991
+},
+{
+  "id": 9,
+  "name": "Barbeque Pizza",
+  "type": "Restaurant",
+  "description": "مطعم بيتزا في بيرزيت",
+  "lat": 31.960823876229377,
+  "lng": 35.1905728162599
+},
+{
+  "id": 10,
+  "name": "محطة 200 للمحروقات",
+  "type": "Gas Station",
+  "description": "محطة وقود في بيرزيت",
+  "lat": 31.960698919447527,
+  "lng": 35.18843161388148
+},
+{
+  "id": 11,
+  "name": "Smoke",
+  "type": "Shop",
+  "description": "محل في بيرزيت",
+  "lat": 31.957294495599513,
+  "lng": 35.18680055053398
+},
+{
+  "id": 12,
+  "name": "جوهرة بيرزيت للاتصالات",
+  "type": "Phone Shop",
+  "description": "محل اتصالات في بيرزيت",
+  "lat": 31.956841231895357,
+  "lng": 35.18557228094034
+},
+{
+  "id": 13,
+  "name": "Vita Vet Services",
+  "type": "Veterinary",
+  "description": "خدمات بيطرية في بيرزيت",
+  "lat": 31.956369819574636,
+  "lng": 35.185540332471994
+},
+{
+  "id": 14,
+  "name": "Supermarket Farraj",
+  "type": "Supermarket",
+  "description": "سوبر ماركت فراج",
+  "lat": 31.955553368167035,
+  "lng": 35.18362951712347
+},
+{
+  "id": 15,
+  "name": "Cilantro Restaurant and Cafe",
+  "type": "Restaurant",
+  "description": "مطعم وكافيه في بيرزيت",
+  "lat": 31.962398670412416,
+  "lng": 35.18299350228617
+},
+{
+  "id": 16,
+  "name": "اسكان ابو فراس للطلاب",
+  "type": "Housing",
+  "description": "سكن طلاب في بيرزيت",
+  "lat": 31.964810000907207,
+  "lng": 35.186368128639195
+},
+{
+  "id": 17,
+  "name": "Grand Hall",
+  "type": "Event Hall",
+  "description": "قاعة مناسبات",
+  "lat": 31.963015580310582,
+  "lng": 35.19163989893734
+},
+{
+  "id": 18,
+  "name": "حديقة البيارة",
+  "type": "Park",
+  "description": "حديقة عامة في بيرزيت",
+  "lat": 31.965715209783916,
+  "lng": 35.191726486953314
+},
+{
+  "id": 19,
+  "name": "صيدلية لانا",
+  "type": "Pharmacy",
+  "description": "صيدلية في بيرزيت",
+  "lat": 31.967007777440838,
+  "lng": 35.194204437979785
+},
+{
+  "id": 20,
+  "name": "مطعم انسى غرامك راح",
+  "type": "Restaurant",
+  "description": "مطعم شعبي في بيرزيت",
+  "lat": 31.96948291143706,
+  "lng": 35.19346208636845
+},
+{
+  "id": 21,
+  "name": "Alnawraj | البيت الفلسطيني",
+  "type": "Restaurant",
+  "description": "مطعم تراثي فلسطيني",
+  "lat": 31.97014195952398,
+  "lng": 35.19955627528673
+},
+{
+  "id": 22,
+  "name": "بنك القدس – فرع بيرزيت",
+  "type": "Bank",
+  "description": "فرع بنك القدس",
+  "lat": 31.968164545165962,
+  "lng": 35.19466900289136
+},
+{
+  "id": 23,
+  "name": "Arab Bank – Birzeit Branch",
+  "type": "Bank",
+  "description": "فرع البنك العربي",
+  "lat": 31.967937052645414,
+  "lng": 35.19314085324717
+},
+{
+  "id": 24,
+  "name": "بنك الإسكان – بيرزيت",
+  "type": "Bank",
+  "description": "فرع بنك الإسكان",
+  "lat": 31.968114683840295,
+  "lng": 35.193394320369286
+},
+{
+  "id": 25,
+  "name": "مكتب بريد بيرزيت",
+  "type": "Post Office",
+  "description": "مكتب البريد في بيرزيت",
+  "lat": 31.969141384561766,
+  "lng": 35.19329644663234
+},
+{
+  "id": 26,
+  "name": "Birzeit Pharmacy",
+  "type": "Pharmacy",
+  "description": "صيدلية بيرزيت",
+  "lat": 31.970931568708686,
+  "lng": 35.1934791871257
+},
+{
+  "id": 27,
+  "name": "AlTooteh Supermarket",
+  "type": "Supermarket",
+  "description": "سوبر ماركت التوتة",
+  "lat": 31.971488687975786,
+  "lng": 35.19364652873084
+},
+{
+  "id": 28,
+  "name": "Jaguar Gym",
+  "type": "Gym",
+  "description": "نادي رياضي في بيرزيت",
+  "lat": 31.96239357946347,
+  "lng": 35.18937169409351
+},
+{
+  "id": 29,
+  "name": "بلدية بيرزيت",
+  "type": "Municipality",
+  "description": "بلدية بيرزيت",
+  "lat": 31.968865598185936,
+  "lng": 35.20180089487669
+},
+{
+  "id": 30,
+  "name": "مسجد عمر بن الخطاب",
+  "type": "Mosque",
+  "description": "مسجد في بيرزيت",
+  "lat": 31.96160220262965,
+  "lng": 35.190289208140044
+},
+{
+  "id": 31,
+  "name": "حديقة بيرزيت",
+  "type": "Park",
+  "description": "حديقة عامة في بيرزيت",
+  "lat": 31.97471617815034,
+  "lng": 35.18809455650469
+}]

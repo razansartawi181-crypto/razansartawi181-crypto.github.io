@@ -1,0 +1,159 @@
+/* ===== RESET ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  direction: rtl;
+  background: #A3A380;
+  color: #3b3b3b;
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding: 40px;
+  text-align: center;
+  background: linear-gradient(135deg, #A3A380, #D6CE93);
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #3b3b3b;
+}
+
+.hero p {
+  color: #4a4a4a;
+}
+
+/* ===== ACTIONS ===== */
+.actions {
+  margin-top: 20px;
+}
+
+.actions button {
+  padding: 12px 22px;
+  font-size: 16px;
+  background: #BB8588;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.actions button:hover {
+  background: #D8A48F;
+}
+
+.actions input {
+  padding: 12px;
+  width: 260px;
+  margin-right: 10px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: #EFEBCE;
+  color: #3b3b3b;
+}
+
+/* ===== CATEGORIES ===== */
+.categories {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  overflow-x: auto;
+  background: #A3A380;
+}
+
+.cat {
+  background: #EFEBCE;
+  border: none;
+  color: #3b3b3b;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-weight: 500;
+}
+
+.cat:hover {
+  background: #D6CE93;
+}
+
+.cat.active {
+  background: #BB8588;
+  color: white;
+}
+
+/* ===== RESULTS ===== */
+#results {
+  padding: 20px;
+  background: #A3A380;
+}
+
+/* ===== PLACE CARD ===== */
+.place-card {
+  background: #EFEBCE;
+  padding: 16px;
+  border-radius: 18px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.place-card.open {
+  background: #D6CE93;
+}
+
+.place-card b {
+  font-size: 16px;
+}
+
+/* ===== DETAILS ===== */
+.place-details {
+  display: none;
+  margin-top: 10px;
+}
+
+.place-card.open .place-details {
+  display: block;
+}
+
+/* ===== RATING ===== */
+.place-details button {
+  background: #BB8588;
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: 0.2s;
+}
+
+.place-details button:hover {
+  background: #D8A48F;
+}
+
+.review {
+  background: #EFEBCE;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.review img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-top: 6px;
+}
+
+/* ===== MAP ===== */
+#map {
+  height: 420px;
+  margin: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
